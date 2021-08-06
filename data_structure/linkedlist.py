@@ -40,10 +40,55 @@ class SingleLL:
         self.size = self.size + 1
 
     def traversal(self):
-        curr_node = self.head
-        while curr_node is not None:
-            print("{}".format(curr_node.data), end=" -> ")
-            curr_node = curr_node.next
+        if not self.exists():
+            print("[ERROR] : LL Does Not Exists")
+            return
+        current_node = self.head
+        while current_node is not None:
+            print("{}".format(current_node.data), end = " -> ")
+            current_node = current_node.next
+        print("")
+
+    def search(self, search_value):
+        if not self.exists():
+            print("[ERROR] : LL Does Not Exists")
+            return
+        current_node = self.head
+        while current_node is not None:
+            if current_node.data == search_value:
+                print("Value {} Found".format(current_node.data))
+                return
+            current_node = current_node.next
+        print("[ERROR] : Value {} NOT Found".format(search_value))
+
+    def delete(self, location):
+        if not self.exists():
+            print("[ERROR] : LL Does Not Exists")
+            return
+        if location == 0:
+            self.head = self.head.next
+            if self.size == 1:
+                self.tail = None
+        elif location >= self.size:
+            if self.size == 1:
+                self.head = None
+                self.tail = None
+            temp_node = self.head
+            for i in range(0, self.size - 1):
+                temp_node = temp_node.next
+            self.tail = temp_node
+            temp_node.next = None
+        else:
+            temp_node = self.head
+            for i in range(0, location - 1):
+                temp_node = temp_node.next
+            temp_node.next = temp_node.next.next
+        self.size = self.size - 1
+
+    def delete_ll(self):
+        self.head = None
+        self.tail = None
+        self.size = 0
 
 
 if __name__ == '__main__':
@@ -53,3 +98,4 @@ if __name__ == '__main__':
     single_ll.insert(30, 0)
     single_ll.insert(40, 10)
     single_ll.traversal()
+    
