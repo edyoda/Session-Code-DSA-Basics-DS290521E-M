@@ -98,4 +98,3 @@ if __name__ == '__main__':
     single_ll.insert(30, 0)
     single_ll.insert(40, 10)
     single_ll.traversal()
-    
